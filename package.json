@@ -1,0 +1,23 @@
+{
+  "name": "workinghorse",
+  "version": "1.0.0",
+  "description": "Matt and Ants cool horse Database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/littlemac23/WorkingHorse.git"
+  },
+  "author": "AntMan Matty ice",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/littlemac23/WorkingHorse/issues"
+  },
+  "homepage": "https://github.com/littlemac23/WorkingHorse#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
+  }
+}
