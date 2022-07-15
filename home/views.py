@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import horseData
+from .forms import CreateHorseForm
 
 def home(request):
     return render(request, 'Horses.html', {})
@@ -11,32 +12,25 @@ def showHorse(request):
         list = horseData.objects.all()
         return render(request,'test.html', {'horsedata': list})
 
-def PostHorse(request, song_id):
+def PostHorse(request):
         if request.method == 'POST':
 
             form = CreateHorseForm(request.POST)
             if form.is_valid():
 
-                name = models.TextField(max_length=500, primary_key=True)
-                acquisitionDate = models.DateField()
-                totalAcquisitionAmount = models.IntegerField()
-                type = models.TextField(max_length=500)
-                place = models.TextField(max_length=500)
-                dispersmentClaim_Sale = models.IntegerField()
-                dispersmentDate = models.DateField()
+                name = request.POST.get("name")
+                acquisitionDate = request.POST.get("acquisitionDate")
+                totalAcquisitionAmount = request.POST.get("totalAcquisitionAmount")
+                type = request.POST.get("type")
+                place = request.POST.get("place")
+                instance = PostHorse(name=name, acquisitionDate=acquisitionDate, totalAcquisitionAmount=totalAcquisitionAmount,type=type, place=place)
+                instance.save()
+                #dispersmentClaim_Sale = request.POST.get("dispersmentClaim_Sale")
+                #dispersmentDate = request.POST.get("dispersmentDate")
 
-
-
-                body = request.POST.get('body', '')
-                author = request.user
-                time = datetime.datetime.now()
-                SongName = song
-                SongComment.objects.create(author = author,  time = time, SongName= SongName , body = body)
-            return redirect('comments' , song)
-            #return HttpResponseRedirect(request.path_info)
-
-        post = SongComment.objects.all()
-        form = CreateSongCommentForm()
-        return render(request, 'comments.html', { 'song': song, 'form': form,  'post': post, 'name': name, 'likes':likes, 'dislikes':dislikes, 'percent':percent +"%", 'color':color, 'total':total , 'artists': artists, 'release_date': release_date})
-
+        #post = horseData.objects.all()
+        #form = CreateHorseForm()
+        #return render(request, 'Horse.html', { 'name': name, 'acquisitionDate': acquisitionDate,  'totalAcquisitionAmount': totalAcquisitionAmount, 'type': type,
+        #'place':place, 'dispersmentClaim_Sale':dispersmentClaim_Sale, 'dispersmentDate':dispersmentDate})
+        return render(request, "home/Horses.html", {"form": form})
 # Create your views here.
