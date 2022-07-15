@@ -6,7 +6,7 @@
 <center>
   <div class="">
     <!----------------------------------------------------------------------------------------------------->
-    <form class="form-horizontal" action="/horse" method="post">
+    <form class="form-horizontal" action="/horse" method="POST">
        {% csrf_token %}
       <fieldset>
         <div class="border rounded p-4">
@@ -16,7 +16,7 @@
             <div class="form-group row align-items-center">
               <label for="Name" class="col-sm-2 col-form-label text-center">Name</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="Name" id="Name" required>
+                <input type="text" class="form-control" name="name" id="name" required>
               </div>
             </div>
 
@@ -24,7 +24,7 @@
             <div class="form-group row align-items-center">
               <label for="AcquisitionDate" class="col-sm-2 col-form-label text-center">Acquisition Date</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="AcquisitionDate" id="AcquisitionDate" required>
+                <input type="text" class="form-control" name="acquisitionDate" id="acquisitionDate" required>
               </div>
             </div>
 
@@ -33,7 +33,7 @@
               <label for="TotalAcquisitionAmount" class="col-sm-2 col-form-label text-center">Total Acquisition
                 Amount</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="TotalAcquisitionAmount" id="TotalAcquisitionAmount"
+                <input type="text" class="form-control" name="totalAcquisitionAmount" id="totalAcquisitionAmount"
                   required>
               </div>
             </div>
@@ -42,7 +42,7 @@
             <div class="form-group row align-items-center">
               <label for="Type" class="col-sm-2 col-form-label text-center">Type</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="Type" id="Type" required>
+                <input type="text" class="form-control" name="type" id="type" required>
               </div>
             </div>
 
@@ -50,7 +50,7 @@
             <div class="form-group row align-items-center">
               <label for="Place" class="col-sm-2 col-form-label text-center">Place</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="Place" id="Place">
+                <input type="text" class="form-control" name="place" id="place">
               </div>
             </div>
 
