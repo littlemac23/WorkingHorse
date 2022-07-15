@@ -1,15 +1,32 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import horseData
 
 def home(request):
     return render(request, 'Horses.html', {})
 def addhorse(request):
         return render(request, 'test.html', {})
 
+def showHorse(request):
+        list = horseData.objects.all()
+        return render(request,'test.html', {'horsedata': list})
+
 def PostHorse(request, song_id):
         if request.method == 'POST':
-            form = CreateCommentForm(request.POST)
+
+            form = CreateHorseForm(request.POST)
             if form.is_valid():
+
+                name = models.TextField(max_length=500, primary_key=True)
+                acquisitionDate = models.DateField()
+                totalAcquisitionAmount = models.IntegerField()
+                type = models.TextField(max_length=500)
+                place = models.TextField(max_length=500)
+                dispersmentClaim_Sale = models.IntegerField()
+                dispersmentDate = models.DateField()
+
+
+
                 body = request.POST.get('body', '')
                 author = request.user
                 time = datetime.datetime.now()
