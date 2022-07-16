@@ -8,5 +8,5 @@ class horseData(models.Model):
     totalAcquisitionAmount = models.IntegerField()
     type = models.CharField(max_length=50)
     place = models.CharField(max_length=50)
-    dispersmentClaim_Sale = models.IntegerField()
-    dispersmentDate = models.DateField()
+    dispersmentClaim_Sale = models.IntegerField(null = True)
+    dispersmentDate = models.DateField(null = True)
