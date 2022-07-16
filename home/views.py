@@ -15,9 +15,14 @@ def showHorse(request):
 def Horse(request):
     if request.method =="POST":
         form = CreateHorseForm(request.POST)
-        if form.isValid():
+        if form.is_valid():
             form.save()
-            return redirect("/")
+            horseData.objects.Create(form)
+            return redirect("/horse")
+
     else:
         form = CreateHorseForm()
-    return render(request, "Horse/Horses.html", {"form": form})
+
+    list = horseData.objects.all()
+    return render(request,'Horse/test.html', {'horsedata': list}, {"form": form})
+    #Sreturn render(request, "Horse/Horses.html", {"form": form})
