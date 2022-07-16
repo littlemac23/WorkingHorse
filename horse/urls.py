@@ -19,5 +19,11 @@ from home import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home', views.home),
-    path('horse', views.showHorse),
+    path('add_horse', views.add_horse, name="add-horse"),
+<<<<<<< HEAD
+    path('', views.home),
+    path('racePage', views.racePage,name="racePage"),
+    path('expensePage', views.expensePage,name="expensePage"),
+=======
+>>>>>>> 9517ca154f34098c133ad2aaf1d3879010c472fe
 ]

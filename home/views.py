@@ -1,36 +1,62 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import horseData
 from .forms import CreateHorseForm
 
+
+def add_horse(request):
+    submitted = False
+    if request.method =="POST":
+        form = CreateHorseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/add_horse?submitted=True')
+    else:
+        form = CreateHorseForm
+        if 'submitted' in request.GET:
+            submitted = True
+
+<<<<<<< HEAD
+    list = horseData.objects.all()
+=======
+        list = horseData.objects.all()
+>>>>>>> 9517ca154f34098c133ad2aaf1d3879010c472fe
+
+    return render(request, 'Horse/add_horse.html',{'form':form, 'submitted': submitted, 'horsedata': list})
+
+
+
+<<<<<<< HEAD
+def racePage(request):
+    return render(request, 'racePage.html', {})
+
+def expensePage(request):
+    return render(request, 'expensePage.html', {})
+=======
+>>>>>>> 9517ca154f34098c133ad2aaf1d3879010c472fe
+
+
+
 def home(request):
-    return render(request, 'Horses.html', {})
+    return render(request, 'Home.html', {})
 def addhorse(request):
-        return render(request, 'test.html', {})
+        return render(request, 'Horse/test.html', {})
 
 def showHorse(request):
         list = horseData.objects.all()
-        return render(request,'test.html', {'horsedata': list})
+        return render(request,'Horse/test.html', {'horsedata': list})
 
-def PostHorse(request):
-        if request.method == 'POST':
+def Horse(request):
+    if request.method =="POST":
+        form = CreateHorseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            horseData.objects.Create(form)
+            return redirect("/horse")
 
-            form = CreateHorseForm(request.POST)
-            if form.is_valid():
+    else:
+        form = CreateHorseForm()
 
-                name = request.POST.get("name")
-                acquisitionDate = request.POST.get("acquisitionDate")
-                totalAcquisitionAmount = request.POST.get("totalAcquisitionAmount")
-                type = request.POST.get("type")
-                place = request.POST.get("place")
-                instance = PostHorse(name=name, acquisitionDate=acquisitionDate, totalAcquisitionAmount=totalAcquisitionAmount,type=type, place=place)
-                instance.save()
-                #dispersmentClaim_Sale = request.POST.get("dispersmentClaim_Sale")
-                #dispersmentDate = request.POST.get("dispersmentDate")
-
-        #post = horseData.objects.all()
-        #form = CreateHorseForm()
-        #return render(request, 'Horse.html', { 'name': name, 'acquisitionDate': acquisitionDate,  'totalAcquisitionAmount': totalAcquisitionAmount, 'type': type,
-        #'place':place, 'dispersmentClaim_Sale':dispersmentClaim_Sale, 'dispersmentDate':dispersmentDate})
-        return render(request, "home/Horses.html", {"form": form})
-# Create your views here.
+    list = horseData.objects.all()
+    return render(request,'Horse/test.html', {'horsedata': list}, {"form": form})
+    #Sreturn render(request, "Horse/Horses.html", {"form": form})
