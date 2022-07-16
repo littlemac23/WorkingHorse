@@ -1,7 +1,29 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import horseData
 from .forms import CreateHorseForm
+
+
+def add_horse(request):
+    submitted = False
+    if request.method =="POST":
+        form = CreateHorseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/add_horse?submitted=True')
+    else:
+        form = CreateHorseForm
+        if 'submitted' in request.GET:
+            submitted = True
+
+        list = horseData.objects.all()
+
+    return render(request, 'Horse/add_horse.html',{'form':form, 'submitted': submitted, 'horsedata': list})
+
+
+
+
+
 
 def home(request):
     return render(request, 'Horse/Horses.html', {})
