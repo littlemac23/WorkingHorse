@@ -10,3 +10,19 @@ class horseData(models.Model):
     place = models.TextField(max_length=500)
     dispersmentClaim_Sale = models.IntegerField()
     dispersmentDate = models.DateField()
+
+class raceData(models.Model):
+
+    total = models.IntegerField()
+    month = models.CharField(max_length=50)
+    year = models.CharField(max_length=50)
+    dateOfRace = models.DateField()
+    location = models.CharField(max_length=50)
+    type = models.CharField(max_length=50)
+    finish = models.CharField(max_length=50)
+
+class expenseData(models.Model):
+    description = models.CharField(max_length = 50)
+    total = models.IntegerField()
+    month = models.CharField(max_length=50)
+    year = models.CharField(max_length=50)

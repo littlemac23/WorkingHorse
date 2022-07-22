@@ -1,0 +1,72 @@
+
+
+ <body><center><h1>Heyyy Matt</h1></center></body>
+
+
+<center>
+  <div class="">
+    <!----------------------------------------------------------------------------------------------------->
+    <form class="form-horizontal" action="/horse" method="POST">
+       {% csrf_token %}
+      <fieldset>
+        <div class="border rounded p-4">
+          <h4 class="mb-3">Add Horse</h4>
+
+            <!-- Input type text -->
+            <div class="form-group row align-items-center">
+              <label for="Name" class="col-sm-2 col-form-label text-center">Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="name" id="name" required>
+              </div>
+            </div>
+
+            <!-- Input type text
+            <div class="form-group row align-items-center">
+              <label for="AcquisitionDate" class="col-sm-2 col-form-label text-center">Acquisition Date</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="acquisitionDate" id="acquisitionDate" required>
+              </div>
+            </div> -->
+
+            <!-- Input type text
+            <div class="form-group row align-items-center">
+              <label for="TotalAcquisitionAmount" class="col-sm-2 col-form-label text-center">Total Acquisition
+                Amount</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="totalAcquisitionAmount" id="totalAcquisitionAmount"
+                  required>
+              </div>
+            </div> -->
+
+            <!-- Input type text
+            <div class="form-group row align-items-center">
+              <label for="Type" class="col-sm-2 col-form-label text-center">Type</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="type" id="type" required>
+              </div>
+            </div>-->
+
+            <!-- Input type text
+            <div class="form-group row align-items-center">
+              <label for="Place" class="col-sm-2 col-form-label text-center">Place</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="place" id="place">
+              </div>
+            </div>-->
+
+
+            <!-- button-->
+            <div class="form-group row align-items-center">
+              <label for="button_id_3" class="col-sm-2 col-form-label text-center"></label>
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary" name="button_id_3" id="button_id_3">Add</button>
+              </div>
+            </div>
+
+
+        </div>
+
+      </fieldset>
+    </form>
+    <hr>
+</center>
