@@ -3,7 +3,7 @@ from django.db import models
 class horseData(models.Model):
     """docstring fo horseData."""
 
-    name = models.TextField(max_length=500, primary_key=True)
+    name = models.CharField(max_length=50, primary_key=True)
     acquisitionDate = models.DateField()
     totalAcquisitionAmount = models.IntegerField()
     type = models.TextField(max_length=500)
