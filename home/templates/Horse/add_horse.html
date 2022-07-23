@@ -1,6 +1,15 @@
-<button onclick="location.href = 'add_horse'">horse</button>
-<button onclick="location.href = 'racePage'">race</button>
-<button onclick="location.href = 'expensePage'">expense</button>
+{% load static %}
+
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'home/css/bootstrap.css' %}"
+/>
+
+
+{% include 'navbar.html' %}
+
+
 <center>
   <h1> Add Horse to Database</h1>
   <br/><br/>
