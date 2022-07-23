@@ -23,10 +23,10 @@ def add_horse(request):
 
 
 def racePage(request):
-    return render(request, 'race/racePage.html', {})
+    return render(request, 'Race/racePage.html', {})
 
 def expensePage(request):
-    return render(request, 'expense/expensePage.html', {})
+    return render(request, 'Expense/expensePage.html', {})
 
 
 def home(request):
