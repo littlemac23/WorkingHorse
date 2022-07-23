@@ -20,6 +20,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home', views.home),
     path('add_horse', views.add_horse, name="add-horse"),
+    path('add_race', views.add_race, name="add-race"),
+    path('add_expense', views.add_expense, name="add-expense"),
+
+
 
     path('', views.home),
     path('racePage', views.racePage,name="racePage"),

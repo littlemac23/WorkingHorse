@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import horseData
-from .forms import CreateHorseForm
+from .models import horseData, raceData, expenseData
+from .forms import CreateHorseForm, CreateRaceForm, CreateExpenseForm
 
 
 def add_horse(request):
@@ -18,7 +18,48 @@ def add_horse(request):
 
     #list = horseData.objects.all()
 
-    return render(request, 'Horse/add_horse.html',{'form':form, 'submitted': submitted, 'horsedata': list})
+    return render(request, 'Horse/add_horse.html',{'form':form, 'submitted': submitted, 'horseData': list})
+
+
+
+
+
+
+
+def add_race(request):
+    submitted = False
+    if request.method =="POST":
+        form = CreateRaceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/add_race?submitted=True')
+    else:
+        form = CreateRaceForm
+        if 'submitted' in request.GET:
+            submitted = True
+
+    #list = horseData.objects.all()
+
+    return render(request, 'Race/add_race.html',{'form':form, 'submitted': submitted, 'raceData': list})
+
+
+def add_expense(request):
+    submitted = False
+    if request.method =="POST":
+        form = CreateExpenseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/add_expense?submitted=True')
+    else:
+        form = CreateExpenseForm
+        if 'submitted' in request.GET:
+            submitted = True
+
+    list = expenseData.objects.all()
+
+    return render(request, 'Expense/add_expense.html',{'form':form, 'submitted': submitted, 'expenseData': list})
+
+
 
 
 

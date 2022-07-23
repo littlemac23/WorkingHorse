@@ -1,0 +1,38 @@
+{% load static %}
+
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'home/css/bootstrap.css' %}"
+/>
+
+
+{% include 'navbar.html' %}
+
+
+<center>
+  <h1> Add Race to Database</h1>
+  <br/><br/>
+  {% if submitted%}
+    Your Horse was added Succefully
+    <ul>
+        {% for i in horsedata %}
+      <li>
+      {{i.name}}
+      </li>
+      {% endfor %}
+    </ul>
+
+  {% else %}
+    <form action="" method="post">
+      {% csrf_token %}
+      {{form.as_p }}
+
+      <input type="submit" class="btn btn-secondary" value="Submit">
+
+    </form>
+
+
+  {% endif %}
+
+</center>
