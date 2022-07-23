@@ -16,25 +16,17 @@ def add_horse(request):
         if 'submitted' in request.GET:
             submitted = True
 
-<<<<<<< HEAD
-    list = horseData.objects.all()
-=======
-        list = horseData.objects.all()
->>>>>>> 9517ca154f34098c133ad2aaf1d3879010c472fe
+    #list = horseData.objects.all()
 
     return render(request, 'Horse/add_horse.html',{'form':form, 'submitted': submitted, 'horsedata': list})
 
 
 
-<<<<<<< HEAD
 def racePage(request):
     return render(request, 'racePage.html', {})
 
 def expensePage(request):
     return render(request, 'expensePage.html', {})
-=======
->>>>>>> 9517ca154f34098c133ad2aaf1d3879010c472fe
-
 
 
 def home(request):
