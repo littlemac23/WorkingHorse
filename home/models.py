@@ -1,28 +1,48 @@
 from django.db import models
-# Create your models here.
-class horseData(models.Model):
-    """docstring fo horseData."""
 
-    name = models.CharField(max_length=50, primary_key=True)
-    acquisitionDate = models.DateField()
+
+
+
+
+class HorseOwner(models.Model):
+    first_name = models.CharField(max_length = 120)
+    last_name = models.CharField(max_length = 120)
+    email = models.EmailField('User Email')
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
+
+class Horse(models.Model):
+    name = models.CharField('Horse Name', max_length = 120)
+    acquisitionDate = models.DateTimeField()
     totalAcquisitionAmount = models.IntegerField()
-    type = models.CharField(max_length=500)
-    place = models.CharField(max_length=500)
-    dispersmentClaim_Sale = models.IntegerField()
-    dispersmentDate = models.DateField()
+    type = models.CharField(max_length = 120)
+    place = models.CharField(max_length = 120)
+    horseOwner = models.ForeignKey(HorseOwner, on_delete = models.CASCADE)
 
-class raceData(models.Model):
 
+    def __str__(self):
+        return self.name
+
+class Race(models.Model):
+    earning = models.IntegerField()
+    month = models.CharField(max_length = 120)
+    year = models.IntegerField()
+    raceDate = models.DateTimeField()
+    finish = models.CharField(max_length = 120)
+    type = models.CharField(max_length = 120)
+    name = models.ForeignKey(Horse, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+class Expense(models.Model):
+    month = models.CharField(max_length = 120)
+    year = models.CharField(max_length = 120)
+    decription = models.CharField(max_length = 120)
     total = models.IntegerField()
-    month = models.CharField(max_length=50)
-    year = models.CharField(max_length=50)
-    dateOfRace = models.DateField()
-    location = models.CharField(max_length=50)
-    type = models.CharField(max_length=50)
-    finish = models.CharField(max_length=50)
+    name = models.ForeignKey(Horse, on_delete = models.CASCADE)
 
-class expenseData(models.Model):
-    description = models.CharField(max_length = 50)
-    total = models.IntegerField()
-    month = models.CharField(max_length=50)
-    year = models.CharField(max_length=50)
+    def __str__(self):
+        return self.name
