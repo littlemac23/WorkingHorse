@@ -3,14 +3,22 @@
 
 {% block content %}
 
+<h1>Race List</h1>
 
 
 
-{% for race in Race %}
-    {{ race.earning}}
-    {{ race.month }}
-    {{ race.year }}
-    {{ race.name }}
+{% for race in race_list %}
+<strong>{{race}}</strong>
+<ul>
+  <li>Winnings: {{race.earning}}</li>
+
+  <li>Date of race: {{race.raceDate.month}}</li>
+  <li>Finish in race: {{race.finish}}</li>
+  <li>Type of race: {{race.type}}</li>
+
+</ul>
+<br/>
 {% endfor %}
 
-  {% endblock %}
+
+{% endblock %}

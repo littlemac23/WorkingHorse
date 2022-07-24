@@ -66,7 +66,9 @@ def add_expense(request):
 
 
 def displayRace(request):
-    return render(request, 'Race/display_race.html', {})
+    race_list = Race.objects.all()
+    return render(request, 'Race/display_race.html',
+    {'race_list': race_list})
 
 
 

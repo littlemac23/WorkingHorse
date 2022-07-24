@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Horse(models.Model):
     name = models.CharField(max_length = 120)
-    acquisitionDate = models.DateTimeField()
+    acquisitionDate = models.DateField()
     totalAcquisitionAmount = models.IntegerField()
     type = models.CharField(max_length = 120)
     place = models.CharField(max_length = 120)
@@ -20,7 +20,7 @@ class Race(models.Model):
     earning = models.IntegerField()
     month = models.CharField(max_length = 120)
     year = models.IntegerField()
-    raceDate = models.DateTimeField()
+    raceDate = models.DateField()
     finish = models.CharField(max_length = 120)
     type = models.CharField(max_length = 120)
     name = models.ForeignKey(Horse, on_delete = models.CASCADE)
