@@ -9,7 +9,10 @@ def add_horse(request):
     if request.method =="POST":
         form = CreateHorseForm(request.POST)
         if form.is_valid():
-            form.save()
+            n = form.cleaned_data["name"]
+            t = Horse(name=n)
+            t.save()
+            response.user.horse.add(t)
             return HttpResponseRedirect('/add_horse?submitted=True')
     else:
         form = CreateHorseForm
@@ -48,6 +51,7 @@ def add_expense(request):
     if request.method =="POST":
         form = CreateExpenseForm(request.POST)
         if form.is_valid():
+            form.user = request.user
             form.save()
             return HttpResponseRedirect('/add_expense?submitted=True')
     else:
@@ -61,6 +65,12 @@ def add_expense(request):
 
 
 
+def displayRace(request):
+    race_list = Race.objects.all()
+    return render(request, 'Race/display_race.html',
+    {'race_list': race_list})
+
+
 
 
 def racePage(request):
@@ -71,7 +81,7 @@ def expensePage(request):
 
 
 def home(request):
-    return render(request, 'Home.html', {})
+    return render(request, 'home/Home.html', {})
 def addhorse(request):
         return render(request, 'Horse/test.html', {})
 
