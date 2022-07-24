@@ -11,4 +11,7 @@ path('add_expense', views.add_expense, name="add-expense"),
 
 path('racePage', views.racePage,name="racePage"),
 path('expensePage', views.expensePage,name="expensePage"),
+
+
+path('display_race', views.displayRace, name="display_race"),
 ]

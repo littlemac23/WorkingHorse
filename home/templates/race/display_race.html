@@ -1,0 +1,16 @@
+{% extends 'home/base.html' %}
+
+
+{% block content %}
+
+
+
+
+{% for race in Race %}
+    {{ race.earning}}
+    {{ race.month }}
+    {{ race.year }}
+    {{ race.name }}
+{% endfor %}
+
+  {% endblock %}
