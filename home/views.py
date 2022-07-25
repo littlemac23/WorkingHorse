@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import Horse, Race, Expense
 from .forms import CreateHorseForm, CreateRaceForm, CreateExpenseForm
-
+from django.contrib.auth.models import User
 
 def add_horse(request):
     submitted = False
@@ -63,28 +63,14 @@ def add_expense(request):
 
 
 def displayRace(request):
-    race_list = Race.objects.all()
+    race_list = Race.objects.filter(name_id=request.user.id)
     return render(request, 'Race/display_race.html',
     {'race_list': race_list})
 
-
-
-
-def testing(request):
-  expense_list = Expense.objects.filter(decription='Farm').values()
-  template = loader.get_template('home/Home.html')
-  context = {
-    'expense_list': expense_list,
-  }
-  return HttpResponse(template.render(context, request))
-
-
-
-# Check out template.html to see how the mymembers object
-# was used in the HTML code.
-
-
-
+def displayExpense(request):
+    expense_list = Expense.objects.all()
+    return render(request, 'home/Home.html',
+    {'expense_list': expense_list})
 
 
 
@@ -98,24 +84,3 @@ def expensePage(request):
 
 def home(request):
     return render(request, 'home/Home.html', {})
-def addhorse(request):
-        return render(request, 'Horse/test.html', {})
-
-def showHorse(request):
-        list = horsedata.objects.all()
-        return render(request,'Horse/test.html', {'horsedata': list})
-
-def Horse(request):
-    if request.method =="POST":
-        form = CreateHorseForm(request.POST)
-        if form.is_valid():
-            form.save()
-            horsedata.objects.Create(form)
-            return redirect("/horse")
-
-    else:
-        form = CreateHorseForm()
-
-    list = horsedata.objects.all()
-    return render(request,'Horse/test.html', {'horsedata': list}, {"form": form})
-    #Sreturn render(request, "Horse/Horses.html", {"form": form})
