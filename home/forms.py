@@ -9,7 +9,13 @@ class CreateHorseForm(ModelForm):
 
         class Meta:
             model = Horse
-            fields = '__all__'
+            fields = ["name", "acquisitionDate", "totalAcquisitionAmount", "type", "place", "user"]
+
+class SellHorseForm(forms.ModelForm):
+
+        class Meta:
+            model = Horse
+            fields = ["sold", "sellingPrice"]
 
 
 

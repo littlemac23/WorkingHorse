@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import Horse, Race, Expense
-from .forms import CreateHorseForm, CreateRaceForm, CreateExpenseForm
+from .forms import CreateHorseForm, CreateRaceForm, CreateExpenseForm, SellHorseForm
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 def add_horse(request):
     submitted = False
@@ -60,7 +61,15 @@ def add_expense(request):
 
     return render(request, 'Expense/add_expense.html',{'form':form, 'submitted': submitted, 'Expense': list})
 
+def displayhorses(request):
+    horses = Horse.objects.filter(user=request.user.id, sold=False )
+    return render(request, 'Horse/Horses.html',
+    {'horses': horses})
 
+def displayhorsesSold(request):
+    horses = Horse.objects.filter(user=request.user.id, sold=True )
+    return render(request, 'Horse/horses_sold.html',
+    {'horses': horses})
 
 def displayRace(request):
     race_list = Race.objects.filter(name_id=request.user.id)
@@ -73,8 +82,6 @@ def displayExpense(request):
     {'expense_list': expense_list})
 
 
-
-
 def racePage(request):
     return render(request, 'Race/racePage.html', {})
 
@@ -84,3 +91,20 @@ def expensePage(request):
 
 def home(request):
     return render(request, 'home/Home.html', {})
+
+
+def edit(request, horse_id):
+    horse = Horse.objects.get(pk=horse_id)
+    form = CreateHorseForm(request.POST or None, instance = horse)
+    if form.is_valid():
+        form.save()
+        return redirect('displayhorses')
+    return render(request, 'Horse/edit.html', {'form': form, 'horse': horse})
+
+def sell(request, horse_id):
+    horse = Horse.objects.get(pk=horse_id)
+    form = SellHorseForm(request.POST or None, instance = horse)
+    if form.is_valid():
+        form.save()
+        return redirect('displayhorses')
+    return render(request, 'Horse/edit.html', {'form': form, 'horse': horse})
