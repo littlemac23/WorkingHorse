@@ -1,7 +1,8 @@
 from django.contrib import admin
-from . import models
-# Register your models here.
-class horseAdmin(admin.ModelAdmin):
-    pass
+from .models import Horse
+from .models import Race
+from .models import Expense
 
-admin.site.register(models.horseData, horseAdmin)
+admin.site.register(Horse)
+admin.site.register(Race)
+admin.site.register(Expense)

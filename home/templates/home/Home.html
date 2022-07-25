@@ -1,0 +1,31 @@
+{% extends 'home/base.html' %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>The queryset object:</p>
+
+{{ expense }}
+
+<p>Loop through the items:</p>
+
+<table border='1'>
+  <tr>
+    <th>Decription</th>
+    <th>Total</th>
+  </tr>
+  {% for x in expense_list %}
+    <tr>
+        <td>{{ x.decription }}</td>
+      <td>{{ x.total }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+</body>
+</html>
+
+  {% endblock %}

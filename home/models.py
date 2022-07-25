@@ -1,28 +1,39 @@
 from django.db import models
-# Create your models here.
-class horseData(models.Model):
-    """docstring fo horseData."""
+from django.conf import settings
+from django.contrib.auth.models import User
 
-    name = models.CharField(max_length=50, primary_key=True)
+
+
+class Horse(models.Model):
+    name = models.CharField(max_length = 120)
     acquisitionDate = models.DateField()
     totalAcquisitionAmount = models.IntegerField()
-    type = models.CharField(max_length=500)
-    place = models.CharField(max_length=500)
-    dispersmentClaim_Sale = models.IntegerField()
-    dispersmentDate = models.DateField()
+    type = models.CharField(max_length = 120)
+    place = models.CharField(max_length = 120)
+    user = models.ForeignKey(User, on_delete = models.CASCADE, null=True)
 
-class raceData(models.Model):
 
+    def __str__(self):
+        return str(self.name)
+
+class Race(models.Model):
+    earning = models.IntegerField()
+    month = models.CharField(max_length = 120)
+    year = models.IntegerField()
+    raceDate = models.DateField()
+    finish = models.CharField(max_length = 120)
+    type = models.CharField(max_length = 120)
+    name = models.ForeignKey(Horse, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return str(self.name) + ' ' + str(self.raceDate)
+
+class Expense(models.Model):
+    month = models.CharField(max_length = 120)
+    year = models.CharField(max_length = 120)
+    decription = models.CharField(max_length = 120)
     total = models.IntegerField()
-    month = models.CharField(max_length=50)
-    year = models.CharField(max_length=50)
-    dateOfRace = models.DateField()
-    location = models.CharField(max_length=50)
-    type = models.CharField(max_length=50)
-    finish = models.CharField(max_length=50)
+    name = models.ForeignKey(Horse, on_delete = models.CASCADE)
 
-class expenseData(models.Model):
-    description = models.CharField(max_length = 50)
-    total = models.IntegerField()
-    month = models.CharField(max_length=50)
-    year = models.CharField(max_length=50)
+    def __str__(self):
+        return str(self.name)+ ' ' + str(self.decription)
