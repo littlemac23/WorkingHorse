@@ -10,7 +10,7 @@ class CreateHorseForm(ModelForm):
         class Meta:
             model = Horse
             fields = '__all__'
-            #('name', 'acquisitionDate', 'totalAcquisitionAmount', 'type', 'place')
+
 
 
 class CreateRaceForm(ModelForm):

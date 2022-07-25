@@ -22,7 +22,9 @@
   {% else %}
     <form action="" method="post">
       {% csrf_token %}
+      {% autoescape off %}
       {{form.as_p }}
+      {% endautoescape %}
 
       <input type="submit" class="btn btn-secondary" value="Submit">
 

@@ -26,7 +26,7 @@ class Race(models.Model):
     name = models.ForeignKey(Horse, on_delete = models.CASCADE)
 
     def __str__(self):
-        return str(self.name)
+        return str(self.name) + ' ' + str(self.raceDate)
 
 class Expense(models.Model):
     month = models.CharField(max_length = 120)
@@ -36,4 +36,4 @@ class Expense(models.Model):
     name = models.ForeignKey(Horse, on_delete = models.CASCADE)
 
     def __str__(self):
-        return str(self.name)
+        return str(self.name)+ ' ' + str(self.decription)

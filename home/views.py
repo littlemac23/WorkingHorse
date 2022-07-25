@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+from django.template import loader
 from .models import Horse, Race, Expense
 from .forms import CreateHorseForm, CreateRaceForm, CreateExpenseForm
 
@@ -9,20 +10,16 @@ def add_horse(request):
     if request.method =="POST":
         form = CreateHorseForm(request.POST)
         if form.is_valid():
-            n = form.cleaned_data["name"]
-            t = Horse(name=n)
-            t.save()
-            response.user.horse.add(t)
+            form.save()
             return HttpResponseRedirect('/add_horse?submitted=True')
     else:
         form = CreateHorseForm
         if 'submitted' in request.GET:
             submitted = True
 
-    #list = horsedata.objects.all()
+    #list = horseData.objects.all()
 
-    return render(request, 'Horse/add_horse.html',{'form':form, 'submitted': submitted, 'Horse': list})
-
+    return render(request, 'Horse/add_horse.html',{'form':form, 'submitted': submitted, 'horsedata': list})
 
 
 
@@ -69,6 +66,25 @@ def displayRace(request):
     race_list = Race.objects.all()
     return render(request, 'Race/display_race.html',
     {'race_list': race_list})
+
+
+
+
+def testing(request):
+  expense_list = Expense.objects.filter(decription='Farm').values()
+  template = loader.get_template('home/Home.html')
+  context = {
+    'expense_list': expense_list,
+  }
+  return HttpResponse(template.render(context, request))
+
+
+
+# Check out template.html to see how the mymembers object
+# was used in the HTML code.
+
+
+
 
 
 
