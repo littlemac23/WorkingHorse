@@ -36,4 +36,4 @@ class Expense(models.Model):
     name = models.ForeignKey(Horse, on_delete = models.CASCADE)
 
     def __str__(self):
-        return str(self.name)+ ' ' + str(self.decription)
+        return str(self.name)+ ' ' + str(self.decription) + ' ' + str(self.id)

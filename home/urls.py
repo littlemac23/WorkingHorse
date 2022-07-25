@@ -14,5 +14,5 @@ path('expensePage', views.expensePage,name="expensePage"),
 
 
 path('display_race', views.displayRace, name="display-race"),
-path('testing', views.testing, name = "testing"),
+path('display_expense', views.displayExpense, name = "display-expense"),
 ]
