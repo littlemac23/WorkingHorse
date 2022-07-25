@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+from django.template import loader
 from .models import Horse, Race, Expense
 from .forms import CreateHorseForm, CreateRaceForm, CreateExpenseForm
-
+from django.contrib.auth.models import User
 
 def add_horse(request):
     submitted = False
@@ -16,10 +17,9 @@ def add_horse(request):
         if 'submitted' in request.GET:
             submitted = True
 
-    #list = horsedata.objects.all()
+    #list = horseData.objects.all()
 
-    return render(request, 'Horse/add_horse.html',{'form':form, 'submitted': submitted, 'Horse': list})
-
+    return render(request, 'Horse/add_horse.html',{'form':form, 'submitted': submitted, 'horsedata': list})
 
 
 
@@ -48,6 +48,7 @@ def add_expense(request):
     if request.method =="POST":
         form = CreateExpenseForm(request.POST)
         if form.is_valid():
+            form.user = request.user
             form.save()
             return HttpResponseRedirect('/add_expense?submitted=True')
     else:
@@ -61,6 +62,17 @@ def add_expense(request):
 
 
 
+def displayRace(request):
+    race_list = Race.objects.filter(name_id=request.user.id)
+    return render(request, 'Race/display_race.html',
+    {'race_list': race_list})
+
+def displayExpense(request):
+    expense_list = Expense.objects.all()
+    return render(request, 'home/Home.html',
+    {'expense_list': expense_list})
+
+
 
 
 def racePage(request):
@@ -71,25 +83,4 @@ def expensePage(request):
 
 
 def home(request):
-    return render(request, 'Home.html', {})
-def addhorse(request):
-        return render(request, 'Horse/test.html', {})
-
-def showHorse(request):
-        list = horsedata.objects.all()
-        return render(request,'Horse/test.html', {'horsedata': list})
-
-def Horse(request):
-    if request.method =="POST":
-        form = CreateHorseForm(request.POST)
-        if form.is_valid():
-            form.save()
-            horsedata.objects.Create(form)
-            return redirect("/horse")
-
-    else:
-        form = CreateHorseForm()
-
-    list = horsedata.objects.all()
-    return render(request,'Horse/test.html', {'horsedata': list}, {"form": form})
-    #Sreturn render(request, "Horse/Horses.html", {"form": form})
+    return render(request, 'home/Home.html', {})
