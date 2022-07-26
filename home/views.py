@@ -61,10 +61,17 @@ def add_expense(request):
 
     return render(request, 'Expense/add_expense.html',{'form':form, 'submitted': submitted, 'Expense': list})
 
+#Displays list of horses
 def displayhorses(request):
     horses = Horse.objects.filter(user=request.user.id, sold=False )
     return render(request, 'Horse/Horses.html',
     {'horses': horses})
+#Displays information for one horse
+def displayHorse(request, horse_id):
+    horse = Horse.objects.get(pk=horse_id)
+    return render(request, 'Horse/display_horse.html',
+    {'horse': horse})
+
 
 def displayhorsesSold(request):
     horses = Horse.objects.filter(user=request.user.id, sold=True )

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-
+  <h1 style="font-size:  50px" align="center" >Welcome, {{ user.get_username }}.</h1>
   {% for expense in expense_list %}
   <strong>{{expense}}</strong>
   <ul>
