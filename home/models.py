@@ -11,7 +11,8 @@ class Horse(models.Model):
     type = models.CharField(max_length = 120)
     place = models.CharField(max_length = 120)
     user = models.ForeignKey(User, on_delete = models.CASCADE, null=True)
-
+    sold = models.BooleanField(default=False)
+    sellingPrice = models.IntegerField(default=0)
 
     def __str__(self):
         return str(self.name)
