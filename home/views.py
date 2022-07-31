@@ -83,10 +83,23 @@ def displayRace(request):
     return render(request, 'Race/display_race.html',
     {'race_list': race_list})
 
+
 def displayExpense(request):
     expense_list = Expense.objects.all()
     return render(request, 'home/Home.html',
     {'expense_list': expense_list})
+
+
+def expensePerMonth(request):
+    qs = Expense.objects.all()
+    name_contains_query = request.GET.get('name_contains')
+    decription_contains_query = request.GET.get('decription_containss')
+    context = {
+        'queryset': qs
+    }
+    return render(request, 'expense/expense_per_month.html', context)
+
+
 
 
 def racePage(request):

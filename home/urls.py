@@ -21,4 +21,5 @@ path('expensePage', views.expensePage,name="expensePage"),
 
 path('display_race', views.displayRace, name="display-race"),
 path('display_expense', views.displayExpense, name = "display-expense"),
+path('expense_per_month', views.expensePerMonth, name= "expense-per-month"),
 ]
