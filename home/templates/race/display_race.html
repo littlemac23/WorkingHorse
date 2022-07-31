@@ -3,22 +3,39 @@
 
 {% block content %}
 
-<h1>Race List</h1>
+<h1><center>Race List</center></h1>
+<form  method="GET">
+  {{myFilter.form}}
+  <button class="btn btn-primary" type="submit">Search</button>
+</form>
 
 
 
-{% for race in race_list %}
-<strong>{{race}}</strong>
-<ul>
-  <li>Winnings: {{race.earning}}</li>
+<table class="table table-bordered"  >
+  <tr>
+    <th><center>name</center></th>
+    <th><center>place</center></th>
+    <th><center>earnings</center></th>
+    <th><center>month</center></th>
+    <th><center>year</center></th>
+    <th><center>racedate</center></th>
+    <th><center>type</center></th>
+  </tr>
 
-  <li>Date of race: {{race.raceDate.month}}</li>
-  <li>Finish in race: {{race.finish}}</li>
-  <li>Type of race: {{race.type}}</li>
+  {% for i in race_list %}
+      <tr class="table-secondary">
 
-</ul>
-<br/>
-{% endfor %}
+        <td><center>{{ i.name }}</center></td>
+        <td><center>{{ i.finish }}</center></td>
+        <td><center>{{ i.earning }}</center></td>
+        <td><center>{{ i.month }}</center></td>
+        <td><center>{{ i.year }}</center></td>
+        <td><center>{{ i.raceDate }}</center></td>
+        <td><center>{{ i.type }}</center></td>
+        <td align="right"><center><a href = "{% url 'edit_race' i.id %}"  class="btn btn-outline-secondary">edit</a></center></td>
+      </tr>
 
+  {% endfor %}
+</table>
 
 {% endblock %}

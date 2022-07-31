@@ -1,0 +1,38 @@
+{% extends 'home/base.html' %}
+
+
+{% block content %}
+
+<h1><center>All your expenses</center></h1>
+<form method="GET">
+  {{myFilter.form}}
+  <button class="btn btn-primary" type="submit">Search</button>
+</form>
+
+
+<table class="table table-bordered"  >
+  <tr>
+    <th><center>name</center></th>
+    <th><center>total</center></th>
+    <th><center>month</center></th>
+    <th><center>year</center></th>
+    <th><center>decription</center></th>
+
+  </tr>
+
+  {% for i in expense_list %}
+      <tr class="table-secondary">
+
+        <td><center>{{ i.name }}</center></td>
+        <td><center>{{ i.total }}</center></td>
+        <td><center>{{ i.month }}</center></td>
+        <td><center>{{ i.year }}</center></td>
+        <td><center>{{ i.decription }}</center></td>
+
+
+      </tr>
+
+  {% endfor %}
+</table>
+
+{% endblock %}

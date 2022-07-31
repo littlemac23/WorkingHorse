@@ -16,10 +16,9 @@ path('displayHorse/<horse_id>', views.displayHorse, name='displayHorse'),
 
 
 path('racePage', views.racePage,name="racePage"),
+path('edit_race/<race_id>', views.edit_race, name='edit_race'),
+path('display_race', views.displayRace, name="display_race"),
+
 path('expensePage', views.expensePage,name="expensePage"),
-
-
-path('display_race', views.displayRace, name="display-race"),
-path('display_expense', views.displayExpense, name = "display-expense"),
-path('expense_per_month', views.expensePerMonth, name= "expense-per-month"),
+path('display_expense', views.displayExpense, name = "display_expense"),
 ]
