@@ -61,7 +61,7 @@ def add_expense(request):
 
     #list = expensedata.objects.all()
 
-    return render(request, 'Expense/add_expense.html',{'form':form, 'submitted': submitted, 'Expense': list})
+    return render(request, 'expense/add_expense.html',{'form':form, 'submitted': submitted, 'Expense': list})
 
 #Displays list of horses
 def displayhorses(request):
@@ -71,13 +71,13 @@ def displayhorses(request):
 #Displays information for one horse
 def displayHorse(request, horse_id):
     horse = Horse.objects.get(pk=horse_id)
-    return render(request, 'Horse/display_horse.html',
+    return render(request, 'horse/display_horse.html',
     {'horse': horse})
 
 
 def displayhorsesSold(request):
     horses = Horse.objects.filter(user=request.user.id, sold=True )
-    return render(request, 'Horse/horses_sold.html',
+    return render(request, 'horse/horses_sold.html',
     {'horses': horses})
 
 def displayRace(request):
@@ -86,7 +86,7 @@ def displayRace(request):
     myFilter = RaceFilter(request.GET, queryset=race_list)
     race_list = myFilter.qs
 
-    return render(request, 'Race/display_race.html',
+    return render(request, 'race/display_race.html',
     {'race_list': race_list, 'myFilter': myFilter})
 
 
@@ -113,7 +113,7 @@ def expensePerMonth(request):
 
 
 def racePage(request):
-    return render(request, 'Race/racePage.html', {})
+    return render(request, 'race/racePage.html', {})
 
 def expensePage(request):
     return render(request, 'Expense/expensePage.html', {})
@@ -129,7 +129,7 @@ def edit(request, horse_id):
     if form.is_valid():
         form.save()
         return redirect('displayhorses')
-    return render(request, 'Horse/edit.html', {'form': form, 'horse': horse})
+    return render(request, 'horse/edit.html', {'form': form, 'horse': horse})
 
 def edit_race(request, race_id):
     race = Race.objects.get(pk=race_id)
@@ -146,4 +146,4 @@ def sell(request, horse_id):
     if form.is_valid():
         form.save()
         return redirect('displayhorses')
-    return render(request, 'Horse/edit.html', {'form': form, 'horse': horse})
+    return render(request, 'horse/edit.html', {'form': form, 'horse': horse})
