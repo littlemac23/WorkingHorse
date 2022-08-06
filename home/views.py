@@ -71,13 +71,13 @@ def displayhorses(request):
 #Displays information for one horse
 def displayHorse(request, horse_id):
     horse = Horse.objects.get(pk=horse_id)
-    return render(request, 'horse/display_horse.html',
+    return render(request, 'Horse/display_horse.html',
     {'horse': horse})
 
 
 def displayhorsesSold(request):
     horses = Horse.objects.filter(user=request.user.id, sold=True )
-    return render(request, 'horse/horses_sold.html',
+    return render(request, 'Horse/horses_sold.html',
     {'horses': horses})
 
 def displayRace(request):
@@ -129,7 +129,7 @@ def edit(request, horse_id):
     if form.is_valid():
         form.save()
         return redirect('displayhorses')
-    return render(request, 'horse/edit.html', {'form': form, 'horse': horse})
+    return render(request, 'Horse/edit.html', {'form': form, 'horse': horse})
 
 def edit_race(request, race_id):
     race = Race.objects.get(pk=race_id)
@@ -146,4 +146,4 @@ def sell(request, horse_id):
     if form.is_valid():
         form.save()
         return redirect('displayhorses')
-    return render(request, 'horse/edit.html', {'form': form, 'horse': horse})
+    return render(request, 'Horse/edit.html', {'form': form, 'horse': horse})
