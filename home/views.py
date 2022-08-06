@@ -43,7 +43,7 @@ def add_race(request):
 
     #list = horsedata.objects.all()
 
-    return render(request, 'Race/add_race.html',{'form':form, 'submitted': submitted, 'Race': list})
+    return render(request, 'race/add_race.html',{'form':form, 'submitted': submitted, 'Race': list})
 
 
 def add_expense(request):
