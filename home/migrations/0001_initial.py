@@ -47,7 +47,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('month', models.CharField(max_length=120)),
                 ('year', models.CharField(max_length=120)),
-                ('decription', models.CharField(max_length=120)),
+                ('description', models.CharField(max_length=120)),
                 ('total', models.IntegerField()),
                 ('name', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='home.horse')),
             ],

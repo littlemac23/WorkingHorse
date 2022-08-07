@@ -32,9 +32,9 @@ class Race(models.Model):
 class Expense(models.Model):
     month = models.CharField(max_length = 120)
     year = models.CharField(max_length = 120)
-    decription = models.CharField(max_length = 120)
+    description = models.CharField(max_length = 120)
     total = models.IntegerField()
     name = models.ForeignKey(Horse, on_delete = models.CASCADE)
 
     def __str__(self):
-        return str(self.name)+ ' ' + str(self.decription) + ' ' + str(self.id)
+        return str(self.name)+ ' ' + str(self.description) + ' ' + str(self.id)
