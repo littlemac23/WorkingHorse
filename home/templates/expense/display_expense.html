@@ -28,8 +28,8 @@
         <td><center>{{ i.name }}</center></td>
         <td><center>{{ i.finish }}</center></td>
         <td><center>{{ i.earning }}</center></td>
-        <td><center>{{ i.month }}</center></td>
-        <td><center>{{ i.year }}</center></td>
+        <td><center>{{ i.raceDate.month }}</center></td>
+        <td><center>{{ i.raceDate.year }}</center></td>
         <td><center>{{ i.raceDate }}</center></td>
         <td><center>{{ i.type }}</center></td>
         <td align="right"><center><a href = "{% url 'edit_race' i.id %}"  class="btn btn-outline-secondary">edit</a></center></td>
