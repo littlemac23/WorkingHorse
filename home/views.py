@@ -86,7 +86,7 @@ def displayRace(request):
     myFilter = RaceFilter(request.GET, queryset=race_list)
     race_list = myFilter.qs
 
-    return render(request, 'Race/display_race.html',
+    return render(request, 'race/display_race.html',
     {'race_list': race_list, 'myFilter': myFilter})
 
 def displayExpense(request):
