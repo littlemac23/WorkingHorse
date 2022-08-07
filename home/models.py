@@ -32,7 +32,7 @@ class Race(models.Model):
 class Expense(models.Model):
     #month = models.CharField(max_length = 120)
     #year = models.CharField(max_length = 120)
-    expenseDate models.DateField()
+    expenseDate = models.DateField()
     description = models.CharField(max_length = 120)
     total = models.IntegerField()
     name = models.ForeignKey(Horse, on_delete = models.CASCADE)
