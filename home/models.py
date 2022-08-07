@@ -21,7 +21,7 @@ class Race(models.Model):
     earning = models.IntegerField()
     #month = models.CharField(max_length = 120)
     #year = models.IntegerField()
-    raceDate = models.DateField()
+    raceDate = models.DateField(default=datetime.now, blank=True)
     finish = models.CharField(max_length = 120)
     type = models.CharField(max_length = 120)
     name = models.ForeignKey(Horse, on_delete = models.CASCADE)
@@ -32,7 +32,7 @@ class Race(models.Model):
 class Expense(models.Model):
     #month = models.CharField(max_length = 120)
     #year = models.CharField(max_length = 120)
-    expenseDate = models.DateField()
+    expenseDate = models.DateField(default=datetime.now, blank=True)
     description = models.CharField(max_length = 120)
     total = models.IntegerField()
     name = models.ForeignKey(Horse, on_delete = models.CASCADE)
