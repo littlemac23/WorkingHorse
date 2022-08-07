@@ -61,7 +61,7 @@ def add_expense(request):
 
     #list = expensedata.objects.all()
 
-    return render(request, 'Expense/add_expense.html',{'form':form, 'submitted': submitted, 'Expense': list})
+    return render(request, 'expense/add_expense.html',{'form':form, 'submitted': submitted, 'Expense': list})
 
 #Displays list of horses
 def displayhorses(request):
