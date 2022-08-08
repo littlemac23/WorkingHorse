@@ -80,8 +80,12 @@ WSGI_APPLICATION = 'horse.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cjblsgys',
+        'USER': 'cjblsgys',
+        'PASSWORD': 'G66SLJvMsW_B4nzn2mqvcY3Rt6d4t7lV',
+        'HOST': 'lallah.db.elephantsql.com',
+        'PORT': '5432'
     }
 }
 
