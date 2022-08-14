@@ -80,12 +80,12 @@ WSGI_APPLICATION = 'horse.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cjblsgys',
-        'USER': 'cjblsgys',
-        'PASSWORD': 'G66SLJvMsW_B4nzn2mqvcY3Rt6d4t7lV',
-        'HOST': 'lallah.db.elephantsql.com',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'horsedatabase',
+        'USER': 'postgres',
+        'PASSWORD': 'HydroPunk19*',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
