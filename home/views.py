@@ -81,7 +81,7 @@ def displayhorsesSold(request):
     {'horses': horses})
 
 def displayRace(request):
-    race_list = Race.objects.all()
+    race_list = Race.objects.filter(user=request.user)
 
     myFilter = RaceFilter(request.GET, queryset=race_list)
     race_list = myFilter.qs
@@ -90,7 +90,7 @@ def displayRace(request):
     {'race_list': race_list, 'myFilter': myFilter})
 
 def displayExpense(request):
-    expense_list = Expense.objects.all()
+    expense_list = Expense.objects.filter(user=request.user)
 
     myFilter = ExpenseFilter(request.GET, queryset=expense_list)
     expense_list = myFilter.qs

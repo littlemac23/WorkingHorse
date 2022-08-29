@@ -2,7 +2,7 @@
 
 
 {% block content %}
-
+{% if user.is_authenticated %}
 <h1><center>Race List</center></h1>
 <form  method="GET">
   {{myFilter.form}}
@@ -37,5 +37,9 @@
 
   {% endfor %}
 </table>
+{% else%}
+<h1>Sorry! You Must be logged in to View This Page...</h1>
 
+<a href="{% url 'login' %}">Login</a>
+  {% endif %}
 {% endblock %}
