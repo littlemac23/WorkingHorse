@@ -25,10 +25,6 @@ def add_horse(request):
     return render(request, 'Horse/add_horse.html',{'form':form, 'submitted': submitted, 'horsedata': list})
 
 
-
-
-
-
 def add_race(request):
     submitted = False
     if request.method =="POST":
@@ -80,17 +76,19 @@ def displayhorsesSold(request):
     return render(request, 'Horse/horses_sold.html',
     {'horses': horses})
 
+
 def displayRace(request):
-    race_list = Race.objects.all()
+    race_list = Race.objects.filter(user=request.user)
 
     myFilter = RaceFilter(request.GET, queryset=race_list)
     race_list = myFilter.qs
 
-    return render(request, 'race/display_race.html',
+    return render(request, 'Race/display_race.html',
     {'race_list': race_list, 'myFilter': myFilter})
 
+
 def displayExpense(request):
-    expense_list = Expense.objects.all()
+    expense_list = Expense.objects.filter(user=request.user)
 
     myFilter = ExpenseFilter(request.GET, queryset=expense_list)
     expense_list = myFilter.qs
