@@ -39,7 +39,7 @@ def add_race(request):
 
     #list = horsedata.objects.all()
 
-    return render(request, 'Race/add_race.html',{'form':form, 'submitted': submitted, 'Race': list})
+    return render(request, 'race/add_race.html',{'form':form, 'submitted': submitted, 'Race': list})
 
 
 def add_expense(request):
@@ -83,7 +83,7 @@ def displayRace(request):
     myFilter = RaceFilter(request.GET, queryset=race_list)
     race_list = myFilter.qs
 
-    return render(request, 'Race/display_race.html',
+    return render(request, 'race/display_race.html',
     {'race_list': race_list, 'myFilter': myFilter})
 
 
@@ -97,8 +97,20 @@ def displayExpense(request):
     {'expense_list': expense_list,  'myFilter': myFilter})
 
 
+def expensePerMonth(request):
+    qs = Expense.objects.all()
+    name_contains_query = request.GET.get('name_contains')
+    decription_contains_query = request.GET.get('decription_containss')
+    context = {
+        'queryset': qs
+    }
+    return render(request, 'expense/expense_per_month.html', context)
+
+
+
+
 def racePage(request):
-    return render(request, 'Race/racePage.html', {})
+    return render(request, 'race/racePage.html', {})
 
 def expensePage(request):
     return render(request, 'Expense/expensePage.html', {})

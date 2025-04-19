@@ -9,16 +9,16 @@ path('add_race', views.add_race, name="add-race"),
 path('add_expense', views.add_expense, name="add-expense"),
 
 path('Horses', views.displayhorses, name="displayhorses"),
-path('horses_sold', views.displayhorsesSold, name="displayhorsesSold"),
-path('sell/<horse_id>', views.sell, name='sell'),
-path('edit/<horse_id>', views.edit, name='edit'),
-path('displayHorse/<horse_id>', views.displayHorse, name='displayHorse'),
+path('Horse/horses_sold', views.displayhorsesSold, name="displayhorsesSold"),
+path('Horse/sell/<horse_id>', views.sell, name='sell'),
+path('Horse/edit/<horse_id>', views.edit, name='edit'),
+path('Horse/displayHorse/<horse_id>', views.displayHorse, name='displayHorse'),
 
 
-path('racePage', views.racePage,name="racePage"),
-path('edit_race/<race_id>', views.edit_race, name='edit_race'),
-path('display_race', views.displayRace, name="display_race"),
+path('race/racePage', views.racePage,name="racePage"),
+path('race/edit_race/<race_id>', views.edit_race, name='edit_race'),
+path('race/display_race', views.displayRace, name="display_race"),
 
-path('expensePage', views.expensePage,name="expensePage"),
-path('display_expense', views.displayExpense, name = "display_expense"),
+path('expense/expensePage', views.expensePage,name="expensePage"),
+path('expense/display_expense', views.displayExpense, name = "display_expense"),
 ]
