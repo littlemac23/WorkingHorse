@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from datetime import datetime
 from django.contrib.auth.models import User
 from datetime import datetime    
 
@@ -35,4 +36,4 @@ class Expense(models.Model):
     name = models.ForeignKey(Horse, on_delete = models.CASCADE)
 
     def __str__(self):
-        return str(self.name)+ ' ' + str(self.decription) + ' ' + str(self.id)
+        return str(self.name)+ ' ' + str(self.description) + ' ' + str(self.id)

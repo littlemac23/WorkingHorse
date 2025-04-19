@@ -64,8 +64,8 @@
             <input type="date" class="form-control" id="expenseDateMax" name="date_max">
           </div>
           <div class="form-group col-md-4">
-            <label for="decription">Description</label>
-            <select id="decription" class="form-control" name="decription">
+            <label for="description">Description</label>
+            <select id="description" class="form-control" name="description">
               <option selected>Choose...</option>
               {% for expense in queryset %}
               <option value="{{ expense }}">{{ expense }}</option>
