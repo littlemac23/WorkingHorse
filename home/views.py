@@ -6,6 +6,7 @@ from .filters import RaceFilter, ExpenseFilter
 from .forms import CreateHorseForm, CreateRaceForm, CreateExpenseForm, SellHorseForm
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 def add_horse(request):
@@ -22,7 +23,7 @@ def add_horse(request):
 
     #list = horseData.objects.all()
 
-    return render(request, 'Horse/add_horse.html',{'form':form, 'submitted': submitted, 'horsedata': list})
+    return render(request, 'horse/add_horse.html',{'form':form, 'submitted': submitted, 'horsedata': list})
 
 
 def add_race(request):
@@ -77,8 +78,9 @@ def displayhorsesSold(request):
     {'horses': horses})
 
 
+@login_required
 def displayRace(request):
-    race_list = Race.objects.filter(user=request.user)
+    race_list = Race.objects.filter(name__user=request.user)
 
     myFilter = RaceFilter(request.GET, queryset=race_list)
     race_list = myFilter.qs
@@ -87,8 +89,9 @@ def displayRace(request):
     {'race_list': race_list, 'myFilter': myFilter})
 
 
+@login_required
 def displayExpense(request):
-    expense_list = Expense.objects.filter(user=request.user)
+    expense_list = Expense.objects.filter(name__user=request.user)
 
     myFilter = ExpenseFilter(request.GET, queryset=expense_list)
     expense_list = myFilter.qs

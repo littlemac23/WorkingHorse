@@ -27,9 +27,9 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Horse</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="Horse/add_horse">Add Horse</a>
-              <a class="dropdown-item" href="Horse/Horses">Show Owned Horses</a>
-              <a class="dropdown-item" href="Horse/horses_sold">Show Sold Horses</a>
+              <a class="dropdown-item" href="{% url 'add_horse' %}">Add Horse</a>
+              <a class="dropdown-item" href="{% url 'displayhorses' %}">Show Owned Horses</a>
+              <a class="dropdown-item" href="{% url 'displayhorsesSold' %}">Show Sold Horses</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Separated link</a>
             </div>
@@ -39,8 +39,8 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Race</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="race/add_race">Add Race</a>
-              <a class="dropdown-item" href="race/display_race">Display Race</a>
+              <a class="dropdown-item" href="{% url 'add_race' %}">Add Race</a>
+              <a class="dropdown-item" href="{% url 'display_race' %}">Display Race</a>
               <a class="dropdown-item" href="#">Something else here</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Separated link</a>
@@ -52,8 +52,8 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Expense</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="expense/add_expense">Add expense</a>
-              <a class="dropdown-item" href="expense/display_expense">display expenses</a>
+              <a class="dropdown-item" href="{% url 'add_expense' %}">Add expense</a>
+              <a class="dropdown-item" href="{% url 'display_expense' %}">display expenses</a>
               <a class="dropdown-item" href="#">Something else here</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Separated link</a>

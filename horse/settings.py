@@ -122,7 +122,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-
+# Authentication settings
+LOGIN_URL = '/users/login'
+LOGIN_REDIRECT_URL = '/'  # Redirect to home page after login
+LOGOUT_REDIRECT_URL = '/'  # Redirect to home page after logout
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
