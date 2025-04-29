@@ -1,30 +1,90 @@
 {% extends 'home/base.html' %}
-
+{% load static %}
 
 {% block content %}
 {% if user.is_authenticated %}
 
-<center>
-  <h1  style="font-size: 50px"> {{horse.name}}  </h1>
-  <br/><br/>
-  <table class="table table-bordered"  >
-        <tr class="table-secondary">
-            <br/><br/>
-            <p  style="font-size: 30px"> Name of Horse: {{horse.name}}  </p>
-            <br/><br/>
-            <p  style="font-size: 30px"> Purchase Date : {{horse.acquisitionDate}}  </p>
-            <br/><br/>
-            <p  style="font-size: 30px"> Total Paid : {{horse.totalAcquisitionAmount}}  </p>
-            <br/><br/>
-            <p  style="font-size: 30px"> type : {{horse.type}}  </p>
-            <br/><br/>
-            <p  style="font-size: 30px"> Location : {{horse.place}}  </p>
-            <br/><br/>
-            <p  style="font-size: 30px"> Owner : {{horse.user}}  </p>
-        </tr>
-  </table>
-</center>
+<div class="row justify-content-center">
+  <div class="col-12 col-md-10 col-lg-8">
+    <!-- Back button -->
+    <div class="mb-4">
+      {% if horse.sold %}
+        <a href="{% url 'displayhorsesSold' %}" class="btn btn-outline-secondary">
+          <i class="bi bi-arrow-left"></i> Back to Sold Horses
+        </a>
+      {% else %}
+        <a href="{% url 'displayhorses' %}" class="btn btn-outline-secondary">
+          <i class="bi bi-arrow-left"></i> Back to Horses
+        </a>
+      {% endif %}
+    </div>
+    
+    <!-- Horse details card -->
+    <div class="card shadow mb-4">
+      <div class="card-header bg-primary text-white">
+        <h1 class="display-5 mb-0 text-center">{{horse.name}}</h1>
+      </div>
+      
+      <div class="card-body">
+        <div class="row g-4">
+          <!-- Left column for image (placeholder) -->
+          <div class="col-md-4 text-center">
+            <img src="https://placehold.co/300x300?text=Horse+Photo" alt="{{horse.name}}" class="img-fluid rounded mb-3">
+            <span class="badge bg-secondary fs-5 mb-2">{{horse.type}}</span>
+          </div>
+          
+          <!-- Right column for details -->
+          <div class="col-md-8">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <div>
+                  <i class="bi bi-calendar3 text-primary me-2"></i>
+                  <span class="fw-bold">Purchase Date:</span>
+                </div>
+                <span>{{horse.acquisitionDate|date:"F d, Y"}}</span>
+              </li>
+              
+              <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <div>
+                  <i class="bi bi-cash-coin text-success me-2"></i>
+                  <span class="fw-bold">Total Paid:</span>
+                </div>
+                <span>${{horse.totalAcquisitionAmount|floatformat:2}}</span>
+              </li>
+              
+              <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <div>
+                  <i class="bi bi-geo-alt text-danger me-2"></i>
+                  <span class="fw-bold">Location:</span>
+                </div>
+                <span>{{horse.place}}</span>
+              </li>
+              
+              <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <div>
+                  <i class="bi bi-person text-secondary me-2"></i>
+                  <span class="fw-bold">Owner:</span>
+                </div>
+                <span>{{horse.user}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card-footer">
+        <div class="d-flex justify-content-end">
+          <a href="{% url 'edit' horse.id %}" class="btn btn-outline-primary">
+            <i class="bi bi-pencil"></i> Edit
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- Add Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 
 {% endif %}
 {% endblock %}
