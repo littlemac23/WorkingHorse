@@ -30,9 +30,23 @@ class Race(models.Model):
         return str(self.name) + ' ' + str(self.raceDate)
 
 class Expense(models.Model):
+    CATEGORY_CHOICES = [
+        ('VETERINARY', 'Veterinary Care'),
+        ('FEED', 'Feed & Nutrition'),
+        ('TRAINING', 'Training & Lessons'),
+        ('BOARDING', 'Boarding & Stabling'),
+        ('EQUIPMENT', 'Equipment & Tack'),
+        ('FARRIER', 'Farrier & Hoof Care'),
+        ('TRANSPORT', 'Transportation'),
+        ('COMPETITION', 'Competition & Race Fees'),
+        ('INSURANCE', 'Insurance'),
+        ('OTHER', 'Other Expenses'),
+    ]
+    
     expenseDate = models.DateField(default=datetime.now, blank=True)
-    decription = models.CharField(max_length = 120)
+    description = models.CharField(max_length = 120)
     total = models.IntegerField()
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='OTHER')
     name = models.ForeignKey(Horse, on_delete = models.CASCADE)
 
     def __str__(self):
