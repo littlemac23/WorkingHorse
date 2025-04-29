@@ -9,7 +9,7 @@ class CreateHorseForm(ModelForm):
 
         class Meta:
             model = Horse
-            fields = ["name", "acquisitionDate", "totalAcquisitionAmount", "type", "place", "user"]
+            fields = ["name", "acquisitionDate", "totalAcquisitionAmount", "type", "place"]
 
 class SellHorseForm(forms.ModelForm):
 

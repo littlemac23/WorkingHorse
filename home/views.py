@@ -9,12 +9,15 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def add_horse(request):
     submitted = False
     if request.method =="POST":
         form = CreateHorseForm(request.POST)
         if form.is_valid():
-            form.save()
+            horse = form.save(commit=False)
+            horse.user = request.user
+            horse.save()
             return HttpResponseRedirect('/add_horse?submitted=True')
     else:
         form = CreateHorseForm
