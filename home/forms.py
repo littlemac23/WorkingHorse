@@ -18,12 +18,14 @@ class CreateHorseForm(ModelForm):
                 'acquisitionDate': DateInput(),
             }
 
+# Form for selling a horse
+# This form only includes the selling price field because the 'sold' status
+# is automatically set to True when the form is submitted in the view
 class SellHorseForm(forms.ModelForm):
 
         class Meta:
             model = Horse
-            fields = ["sold", "sellingPrice"]
-
+            fields = ["sellingPrice"]  # Only include selling price, 'sold' is handled automatically
 
 
 class CreateRaceForm(ModelForm):

@@ -143,10 +143,35 @@ def edit_race(request, race_id):
     return render(request, 'race/edit_race.html', {'form': form, 'race': race})
 
 
+# View function for handling the horse selling process
+# This function:
+# 1. Displays a form for entering the selling price
+# 2. Automatically marks the horse as sold when form is submitted
+# 3. Redirects to the horses list after successful submission
 def sell(request, horse_id):
+    # Get the horse object by its ID
     horse = Horse.objects.get(pk=horse_id)
+    
+    # Create the form instance with POST data if provided
     form = SellHorseForm(request.POST or None, instance = horse)
+    
+    # Process the form if it's valid
     if form.is_valid():
-        form.save()
+        # Use commit=False to get the object without saving yet
+        # This allows us to modify fields before final save
+        horse_obj = form.save(commit=False)
+        
+        # Automatically set sold status to True
+        # The user doesn't need to check a box - it happens automatically
+        # when the update button is clicked
+        horse_obj.sold = True
+        
+        # Save the horse with updated fields
+        horse_obj.save()
+        
+        # Redirect to the horses list page
         return redirect('displayhorses')
-    return render(request, 'Horse/edit.html', {'form': form, 'horse': horse})
+        
+    # If form not submitted or invalid, display the form
+    # Uses sell_horse.html template to render the form
+    return render(request, 'Horse/sell_horse.html', {'form': form, 'horse': horse})
